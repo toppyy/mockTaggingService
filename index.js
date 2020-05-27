@@ -9,7 +9,10 @@ const handleRequest = (request, response) => {
     const service = request.params.service
     const serviceTags = tags[service] 
 
-    response.send( serviceTags ? JSON.stringify(serviceTags)  : tags.default )
+    const wait = Math.random() * 4000 // Delay response between 0-4 secs at random
+    
+
+    setTimeout(() =>     response.send( serviceTags ? JSON.stringify(serviceTags)  : tags.default ), wait)
 }
 
 app.get('/tag/:service*', handleRequest)
